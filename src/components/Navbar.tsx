@@ -7,7 +7,8 @@ import {
   EnvelopeIcon, 
   ArrowDownTrayIcon, 
   CheckIcon,
-  DocumentDuplicateIcon
+  DocumentDuplicateIcon,
+  PhoneIcon
 } from '@heroicons/react/24/outline';
 import { ThemeToggle } from './ThemeToggle';
 import resumePdf from '../assets/Nikil_Varghese_Resume.pdf';
@@ -31,7 +32,6 @@ const navItems = [
   { name: 'Projects', href: '#work' },
   { name: 'QA Evidence', href: '#qa-testing' },
   { name: 'Achievements', href: '#achievements' },
-  { name: 'Principles', href: '#philosophy' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -70,7 +70,7 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['skills', 'about', 'work', 'qa-testing', 'achievements', 'philosophy', 'contact'];
+      const sections = ['skills', 'about', 'work', 'qa-testing', 'achievements', 'contact'];
       const scrollPosition = window.scrollY + 140;
 
       for (const sectionId of sections) {
@@ -93,16 +93,23 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleBrandClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.history.pushState(null, '', '/');
+    setActiveSection('');
+  };
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 transition-[background-color,border-color,padding,box-shadow] duration-300 ${
         isHireModalOpen ? 'z-[200]' : 'z-50'
       } ${
         isScrolled
-          ? 'bg-brand-bg-light/75 dark:bg-brand-bg-dark/70 backdrop-blur-md border-b border-brand-border-light dark:border-brand-border-dark/60 py-3 shadow-xs'
+          ? 'bg-brand-bg-light/95 dark:bg-brand-bg-dark/95 border-b border-brand-border-light dark:border-brand-border-dark/80 py-3 shadow-xs'
           : 'bg-transparent border-b border-transparent py-5'
       }`}
     >
@@ -110,11 +117,12 @@ export const Navbar = () => {
         {/* Brand Logo & Name */}
         <a 
           href="#" 
-          className="flex items-center gap-3 text-lg font-bold tracking-tight text-brand-text-primary-light dark:text-brand-text-primary-dark transition-colors duration-200 group shrink-0 whitespace-nowrap"
+          onClick={handleBrandClick}
+          className="flex items-center gap-3 text-lg font-bold tracking-tight text-brand-text-primary-light dark:text-brand-text-primary-dark transition-colors duration-200 group shrink-0"
           aria-label="Nikil Varghese Home"
         >
           <NavbarLogo className="h-10 w-auto shrink-0 transition-transform duration-200 group-hover:scale-[1.02]" alt="" />
-          <span className="hidden min-[480px]:inline whitespace-nowrap shrink-0">Nikil Varghese</span>
+          <span className="hidden min-[480px]:inline shrink-0">Nikil Varghese</span>
         </a>
 
         {/* Desktop Centered Navigation */}
@@ -340,6 +348,29 @@ export const Navbar = () => {
                         </>
                       )}
                     </button>
+                  </div>
+
+                  {/* Phone (with WhatsApp link) */}
+                  <div className="flex gap-2">
+                    <a
+                      href="tel:+918591766970"
+                      className="flex-grow flex items-center gap-3 p-2.5 rounded-lg border border-brand-border-light dark:border-brand-border-dark/80 bg-brand-surface-light dark:bg-brand-surface-dark hover:border-brand-accent-indigo/40 dark:hover:border-brand-accent-indigo/40 transition-colors group"
+                    >
+                      <PhoneIcon className="w-4 h-4 text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark group-hover:text-brand-accent-indigo transition-colors shrink-0" />
+                      <div className="text-left leading-none">
+                        <span className="block text-[8px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider mb-0.5">Phone</span>
+                        <span className="block text-xs font-semibold text-brand-text-primary-light dark:text-brand-text-primary-dark">+91 8591766970</span>
+                      </div>
+                    </a>
+                    
+                    <a
+                      href="https://wa.me/918591766970"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3.5 rounded-lg border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark hover:bg-brand-surface-hover-light dark:hover:bg-brand-surface-hover-dark/40 text-brand-text-secondary-light dark:text-brand-text-secondary-dark text-xs font-semibold cursor-pointer transition-colors min-w-[75px] flex items-center justify-center gap-1.5"
+                    >
+                      WhatsApp
+                    </a>
                   </div>
 
                   {/* LinkedIn Link */}

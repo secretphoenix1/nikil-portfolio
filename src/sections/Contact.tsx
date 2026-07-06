@@ -51,14 +51,8 @@ export const Contact = () => {
               </p>
 
               {/* Status Indicator */}
-              <div className="flex items-center gap-3 py-2 px-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-lg w-fit">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent-blue opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-accent-blue"></span>
-                </span>
-                <span className="text-[10px] font-semibold text-brand-text-secondary-light dark:text-brand-text-secondary-dark">
-                  OPEN TO QA AUTOMATION ROLES
-                </span>
+              <div className="flex items-center gap-2 text-xs font-semibold text-brand-accent-blue tracking-wide">
+                <span>Open to QA Automation Roles</span>
               </div>
             </div>
 
@@ -69,7 +63,7 @@ export const Contact = () => {
               <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between gap-3 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl hover:border-brand-accent-blue/35 dark:hover:border-brand-accent-blue/35 transition-all">
                 <a 
                   href="mailto:nikiledwin6@gmail.com" 
-                  className="flex items-center gap-3.5 group text-xs sm:text-sm font-semibold text-brand-text-primary-light dark:text-brand-text-primary-dark hover:text-brand-accent-blue transition-colors min-w-0"
+                  className="flex items-center gap-3.5 group text-xs sm:text-sm font-bold text-brand-text-primary-light dark:text-brand-text-primary-dark hover:text-brand-accent-blue transition-colors min-w-0"
                 >
                   <EnvelopeIcon className="w-4 h-4 text-brand-text-tertiary-light group-hover:text-brand-accent-blue transition-colors shrink-0" />
                   <span className="truncate">nikiledwin6@gmail.com</span>
@@ -95,20 +89,31 @@ export const Contact = () => {
               </div>
 
               {/* Phone Connection */}
-              <a 
-                href="tel:8591766970" 
-                className="flex items-center gap-3.5 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl text-xs sm:text-sm font-semibold text-brand-text-primary-light dark:text-brand-text-primary-dark hover:text-brand-accent-blue hover:border-brand-accent-blue/35 dark:hover:border-brand-accent-blue/35 transition-all group"
-              >
-                <PhoneIcon className="w-4 h-4 text-brand-text-tertiary-light group-hover:text-brand-accent-blue transition-colors shrink-0" />
-                +91 8591766970
-              </a>
+              <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center min-[400px]:justify-between gap-3 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl hover:border-brand-accent-blue/35 dark:hover:border-brand-accent-blue/35 transition-all group">
+                <a 
+                  href="tel:+918591766970" 
+                  className="flex items-center gap-3.5 text-xs sm:text-sm font-bold text-brand-text-primary-light dark:text-brand-text-primary-dark hover:text-brand-accent-blue transition-colors min-w-0"
+                >
+                  <PhoneIcon className="w-4 h-4 text-brand-text-tertiary-light group-hover:text-brand-accent-blue transition-colors shrink-0" />
+                  <span>+91 8591766970</span>
+                </a>
+                
+                <a
+                  href="https://wa.me/918591766970"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full min-[400px]:w-auto px-3 py-1.5 bg-brand-surface-light dark:bg-brand-surface-dark border border-brand-border-light dark:border-brand-border-dark hover:bg-brand-surface-hover-light dark:hover:bg-brand-surface-hover-dark/40 text-[10px] text-brand-text-secondary-light dark:text-brand-text-secondary-dark rounded-md font-semibold cursor-pointer transition-colors flex items-center gap-1.5 min-w-[70px] justify-center shadow-xs shrink-0"
+                >
+                  WhatsApp
+                </a>
+              </div>
 
               {/* LinkedIn Connection */}
               <a 
                 href="https://www.linkedin.com/in/nikil-varghese-956281255/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex flex-col min-[450px]:flex-row min-[450px]:items-center min-[450px]:justify-between gap-3 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl text-xs sm:text-sm font-semibold text-brand-text-primary-light dark:text-brand-text-primary-dark hover:text-brand-accent-blue hover:border-brand-accent-blue/35 dark:hover:border-brand-accent-blue/35 transition-all group"
+                className="flex flex-col min-[450px]:flex-row min-[450px]:items-center min-[450px]:justify-between gap-3 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl text-xs sm:text-sm font-bold text-brand-text-primary-light dark:text-brand-text-primary-dark hover:text-brand-accent-blue hover:border-brand-accent-blue/35 dark:hover:border-brand-accent-blue/35 transition-all group"
               >
                 <div className="flex items-center gap-3.5 min-w-0 w-full min-[450px]:w-auto">
                   <LinkedInIcon className="w-4 h-4 text-brand-text-tertiary-light group-hover:text-brand-accent-blue transition-colors shrink-0" />
@@ -118,12 +123,12 @@ export const Contact = () => {
               </a>
 
               {/* Location & Timezone Details */}
-              <div className="flex flex-col min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between gap-3 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl text-xs text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-medium">
+              <div className="flex flex-col min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between gap-3 p-4 bg-brand-bg-light dark:bg-[#09090b] border border-brand-border-light dark:border-brand-border-dark/60 rounded-xl text-xs text-brand-text-primary-light dark:text-brand-text-primary-dark font-bold">
                 <div className="flex items-center gap-3.5">
                   <MapPinIcon className="w-4 h-4 text-brand-text-tertiary-light shrink-0" />
                   Mumbai, India
                 </div>
-                <div className="flex items-center gap-1.5 font-mono text-[10px] text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-tight self-start min-[380px]:self-auto">
+                <div className="flex items-center gap-1.5 font-mono text-[10px] text-brand-text-primary-light dark:text-brand-text-primary-dark uppercase tracking-tight self-start min-[380px]:self-auto">
                   <ClockIcon className="w-3.5 h-3.5 text-brand-text-tertiary-light" />
                   GMT+5:30
                 </div>

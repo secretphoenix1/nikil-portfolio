@@ -116,9 +116,9 @@ export const QATesting = () => {
         </ScrollReveal>
 
         {/* Overview & Statistics Split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 lg:gap-12 items-start mb-16">
           {/* Left: Description & Tech Badges */}
-          <ScrollReveal className="lg:col-span-6 space-y-6">
+          <ScrollReveal className="md:col-span-6 space-y-6">
             <p className="text-sm sm:text-[15px] text-brand-text-secondary-light dark:text-brand-text-secondary-dark leading-relaxed font-normal">
               Designed and executed 280+ test cases covering Authentication, Candidate Dashboard, Recruiter Dashboard, Job Search, Job Applications, Profile Management, and Hiring Workflows. Automated 225 end-to-end test scenarios using Playwright and TypeScript following Page Object Model (POM) architecture. Performed functional, smoke, and regression testing while generating HTML reports and execution logs.
             </p>
@@ -141,12 +141,12 @@ export const QATesting = () => {
           </ScrollReveal>
 
           {/* Right: Statistics Grid */}
-          <ScrollReveal delay={100} className="lg:col-span-6">
+          <ScrollReveal delay={100} className="md:col-span-6">
             <div className="grid grid-cols-2 gap-4">
               {statsData.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="qa-dashboard-card bg-white/40 dark:bg-[#0e131f]/40 backdrop-blur-sm rounded-xl p-5 md:p-6 flex flex-col justify-center"
+                  className="qa-dashboard-card rounded-xl p-5 md:p-6 flex flex-col justify-center"
                 >
                   <span className={`text-2xl sm:text-3xl font-bold tracking-tight ${
                     stat.highlight 
@@ -169,7 +169,7 @@ export const QATesting = () => {
         </div>
 
         <ScrollReveal className="mb-16">
-          <div className="qa-dashboard-card rounded-xl bg-white/40 dark:bg-[#0e131f]/40 backdrop-blur-sm p-5 md:p-6">
+          <div className="qa-dashboard-card rounded-xl p-5 md:p-6">
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div>
                 <span className="text-[10px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider">
@@ -186,13 +186,13 @@ export const QATesting = () => {
                   <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400">100% PASS RATE</span>
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:max-w-3xl w-full">
+              <div className="flex flex-wrap gap-x-5 gap-y-3 lg:max-w-3xl w-full">
                 {testingHighlights.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 rounded-lg border border-brand-border-light dark:border-brand-border-dark/70 bg-slate-50/50 dark:bg-[#0d0d0f]/50 px-3 py-2 text-xs font-semibold text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-mono"
+                    className="flex items-center gap-2 text-xs font-semibold text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-mono"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                    <span className="h-1 w-1 rounded-full bg-brand-text-tertiary-light dark:bg-brand-text-tertiary-dark shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
@@ -203,12 +203,11 @@ export const QATesting = () => {
 
         {/* Test Coverage checklist */}
         <ScrollReveal className="mb-16">
-          <div className="qa-dashboard-card p-6 md:p-8 bg-white/40 dark:bg-[#0e131f]/40 backdrop-blur-sm rounded-xl">
+          <div className="qa-dashboard-card p-6 md:p-8 rounded-xl">
             <h3 className="text-xs font-bold text-brand-text-primary-light dark:text-brand-text-primary-dark mb-6 uppercase tracking-wider flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-accent-blue" />
               Verified Module Test Coverage Scope
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-4 gap-x-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-4 gap-x-6">
               {coverageItems.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-brand-text-secondary-light dark:text-brand-text-secondary-dark">
                   <CheckCircleIcon className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -220,7 +219,7 @@ export const QATesting = () => {
         </ScrollReveal>
 
         {/* Evidence Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Card 1: Test Case Documentation */}
           <ScrollReveal delay={50} className="flex">
@@ -285,15 +284,15 @@ export const QATesting = () => {
                 {/* Clickable Image Container */}
                 <div 
                   onClick={() => setLightbox({ type: 'image', src: playwrightReportImg, alt: 'Playwright HTML Report' })}
-                  className="relative group/img aspect-video rounded-lg overflow-hidden border border-brand-border-light dark:border-brand-border-dark cursor-zoom-in bg-slate-900/5 dark:bg-slate-950/20"
+                  className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/40 p-3 aspect-video cursor-zoom-in relative group/img"
                 >
                   <img 
                     src={playwrightReportImg} 
                     alt="Playwright HTML Report" 
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.03]" 
+                    className="w-full h-full object-contain rounded-lg border border-slate-200/50 dark:border-slate-800/50 shadow-sm transition-transform duration-500 group-hover/img:scale-[1.02]" 
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 m-3 rounded-lg pointer-events-none">
                     <PhotoIcon className="w-5 h-5 text-white" />
                     <span className="text-xs font-medium text-white">Click to Zoom</span>
                   </div>
@@ -331,15 +330,15 @@ export const QATesting = () => {
                 {/* Clickable Image Container */}
                 <div 
                   onClick={() => setLightbox({ type: 'image', src: testExecutionImg, alt: 'Test Execution Results' })}
-                  className="relative group/img aspect-video rounded-lg overflow-hidden border border-brand-border-light dark:border-brand-border-dark cursor-zoom-in bg-slate-900/5 dark:bg-slate-950/20"
+                  className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/40 p-3 aspect-video cursor-zoom-in relative group/img"
                 >
                   <img 
                     src={testExecutionImg} 
                     alt="Test Execution Results" 
                     loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover/img:scale-[1.03]" 
+                    className="w-full h-full object-contain rounded-lg border border-slate-200/50 dark:border-slate-800/50 shadow-sm transition-transform duration-500 group-hover/img:scale-[1.02]" 
                   />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-2 m-3 rounded-lg pointer-events-none">
                     <PhotoIcon className="w-5 h-5 text-white" />
                     <span className="text-xs font-medium text-white">Click to Zoom</span>
                   </div>

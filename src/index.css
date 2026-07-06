@@ -48,25 +48,22 @@
 .qa-dashboard-card {
   border: 1px solid var(--color-brand-border-light);
   background: var(--color-brand-surface-light);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 :where(.dark) .qa-dashboard-card {
   border-color: var(--color-brand-border-dark);
   background: var(--color-brand-surface-dark);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 .qa-dashboard-card:hover {
-  border-color: #3b82f6; /* Accent blue on hover */
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.05), 0 4px 6px -4px rgba(59, 130, 246, 0.05);
+  border-color: #cbd5e1; /* Subtle slate border highlight in light mode */
 }
 
 :where(.dark) .qa-dashboard-card:hover {
-  border-color: #2563eb;
-  box-shadow: 0 10px 20px -3px rgba(0, 0, 0, 0.4), 0 4px 12px -4px rgba(37, 99, 235, 0.15);
+  border-color: #334155; /* Subtle slate border highlight in dark mode */
 }
 
 /* Premium Logo Card Showcase Styling */
@@ -89,6 +86,21 @@
     0 1px 3px rgba(0, 0, 0, 0.2),
     inset 0 1px 1px rgba(255, 255, 255, 0.03),
     inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* OKLCH Color Fallbacks for Older Browsers */
+.fallback-emerald {
+  color: #059669;
+}
+:where(.dark) .fallback-emerald {
+  color: #34d399;
+}
+
+.fallback-blue {
+  color: #2563eb;
+}
+:where(.dark) .fallback-blue {
+  color: #60a5fa;
 }
 
 

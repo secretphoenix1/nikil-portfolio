@@ -120,7 +120,7 @@ export const Skills = () => {
         </ScrollReveal>
 
         {/* Categorized Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
           {skillGroups.map((section, idx) => {
             const Icon = section.icon;
             return (
@@ -139,7 +139,7 @@ export const Skills = () => {
                         {section.category}
                       </h3>
                     </div>
-                    <span className={`p-2.5 rounded-lg border shrink-0 transition-transform duration-300 group-hover:scale-105 ${getAccentClasses(section.accent)}`}>
+                    <span className={`p-2.5 rounded-lg border shrink-0 ${getAccentClasses(section.accent)}`}>
                       <Icon className="w-5 h-5" />
                     </span>
                   </div>

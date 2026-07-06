@@ -16,10 +16,6 @@ import landingPage from "../assets/screenshots/landing-page.png";
 import postJobRestriction from "../assets/screenshots/postjob-restriction.png";
 import applyJob from "../assets/screenshots/applyjob.png";
 
-import lobbySpawn from "../assets/Minecraft/lobby-spawn.jpeg";
-import skyblockGui from "../assets/Minecraft/skyblock-gui.png";
-import survivalLobby from "../assets/Minecraft/survival-lobby.jpeg";
-
 import infrastructureArchitecture from "../assets/vmware/infrastructure-architecture.png";
 import loadBalancerSwitching from "../assets/vmware/load-balancer-switching.png";
 import htopMonitoring from "../assets/vmware/htop-monitoring.png";
@@ -29,19 +25,6 @@ const ZoomIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
   </svg>
 );
-
-const getCategoryStyles = (category: string) => {
-  switch (category) {
-    case 'Web & Full-Stack':
-      return { dot: 'bg-blue-500', text: 'text-blue-600 dark:text-blue-400', bg: 'bg-blue-500/5 dark:bg-blue-500/10 border-blue-500/10 dark:border-blue-500/20' };
-    case 'Mobile & AI':
-      return { dot: 'bg-violet-500', text: 'text-violet-600 dark:text-violet-400', bg: 'bg-violet-500/5 dark:bg-violet-500/10 border-violet-500/10 dark:border-violet-500/20' };
-    case 'Systems & Infrastructure':
-      return { dot: 'bg-emerald-500', text: 'text-emerald-600 dark:text-emerald-400', bg: 'bg-emerald-500/5 dark:bg-emerald-500/10 border-emerald-500/10 dark:border-emerald-500/20' };
-    default:
-      return { dot: 'bg-amber-500', text: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-500/5 dark:bg-amber-500/10 border-amber-500/10 dark:border-amber-500/20' };
-  }
-};
 
 const ImageCard = ({
   src,
@@ -57,13 +40,13 @@ const ImageCard = ({
   onClick?: () => void;
 }) => (
   <div className="group flex flex-col gap-2.5 h-full cursor-pointer" onClick={onClick}>
-    <div className="rounded-xl overflow-hidden border border-brand-border-light dark:border-brand-border-dark bg-slate-50 dark:bg-brand-surface-dark relative flex items-center justify-center p-2.5 aspect-video sm:aspect-auto">
+    <div className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/40 relative flex items-center justify-center p-3 aspect-video sm:aspect-auto">
       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-10">
         <div className="p-2 bg-zinc-900/80 rounded-full border border-zinc-800 backdrop-blur-xs shadow-md">
           <ZoomIcon />
         </div>
       </div>
-      <img src={src} alt={alt} loading="lazy" className="max-h-48 object-contain transform group-hover:scale-[1.02] transition-transform duration-300 rounded shadow-xs" />
+      <img src={src} alt={alt} loading="lazy" className="max-h-48 object-contain transform group-hover:scale-[1.02] transition-transform duration-300 rounded-lg border border-slate-200/50 dark:border-slate-800/50 shadow-sm" />
     </div>
     <div className="border-l-2 border-brand-accent-blue pl-2.5 flex flex-col gap-0.5">
       {title && <h4 className="text-xs font-bold text-brand-text-primary-light dark:text-brand-text-primary-dark group-hover:text-brand-accent-blue transition-colors">{title}</h4>}
@@ -135,21 +118,6 @@ const projectsData: Project[] = [
     complexity: 'Established bridged virtual networks with static IP assignments and Nginx load configurations.',
     decisions: 'Implemented Round-Robin proxy routing over single-server routing to split server queries.',
     scalability: 'Designed custom Bash scripts to provision and join new server nodes to the load balancer pool dynamically.'
-  },
-  {
-    id: 'minecraft',
-    title: 'Minecraft Multi-World Server',
-    subtitle: 'A single-instance game server featuring isolated worlds, custom Skript rules, and cross-play bridging.',
-    description: 'A multi-mode game server integrating Lobby, Survival, SkyBlock, and PvP worlds within a single instance. Utilizes Multiverse world segregation, LuckPerms permissions, and automated Skript logic.',
-    category: 'Game Infrastructure',
-    technologies: ['Aternos Hosting', 'PaperMC', 'Multiverse-Core', 'Multiverse Inventories', 'EssentialsX', 'Vault', 'LuckPerms', 'Skript', 'GeyserMC', 'Floodgate', 'IridiumSkyblock', 'OneBlock', 'NPC Plugins'],
-    github: '',
-    heroImage: lobbySpawn,
-    isFeatured: false,
-    businessValue: 'Seamless navigation between game modes while maintaining world-specific inventories, permissions, and gameplay rules.',
-    complexity: 'Integrating multiple plugins (Multiverse, LuckPerms, EssentialsX) and resolving command conflicts across isolated worlds.',
-    decisions: 'Used world isolation through Multiverse and permission-based access control instead of running separate server instances.',
-    scalability: 'The server architecture allows additional worlds and game modes to be added through Multiverse without restructuring the existing setup.'
   }
 ];
 
@@ -161,8 +129,6 @@ const getProjectProblem = (id: string) => {
       return "Interfacing chat transcripts from dating portals requires users to manually copy screens, which is slow and adds usability blockades on mobile clients.";
     case 'vmware':
       return "Developing infrastructure requires testing host behaviors, traffic routing, and redundancy patterns. Replicating this requires virtual sandbox environments that mimic actual web servers and proxy boundaries.";
-    case 'minecraft':
-      return "Managing multiple game modes usually requires players to switch servers, creating fragmented communities and inconsistent progression.";
     default:
       return "";
   }
@@ -176,8 +142,6 @@ const getProjectSolution = (id: string) => {
       return "Built an automated image parser integrating Gemini Vision OCR to translate image pixels into text strings, cleaning conversational lines and feeding them to customized API prompts.";
     case 'vmware':
       return "Configured multi-node Ubuntu Server VMs running on VMware Workstation, routing upstream queries through an Nginx proxy load balancer configured with round-robin traffic routing rules.";
-    case 'minecraft':
-      return "Built a unified Minecraft server using Multiverse to host Survival, SkyBlock, One Block, PvP, and Lobby worlds inside a single PaperMC server instance.";
     default:
       return "";
   }
@@ -255,9 +219,8 @@ export const Projects = () => {
         </ScrollReveal>
 
         {/* Projects Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project, idx) => {
-            const catStyle = getCategoryStyles(project.category);
             return (
               <ScrollReveal
                 key={project.id}
@@ -270,7 +233,7 @@ export const Projects = () => {
                 >
                 {/* Cover Image */}
                 <div 
-                  className="aspect-[16/9] bg-slate-50 dark:bg-brand-bg-dark/40 flex items-center justify-center p-6 relative overflow-hidden border-b border-brand-border-light dark:border-brand-border-dark cursor-pointer"
+                  className="aspect-[16/9] p-3 bg-slate-100/50 border-b border-brand-border-light dark:bg-slate-900/20 dark:border-brand-border-dark/60 flex items-center justify-center relative overflow-hidden cursor-pointer"
                   onClick={() => setSelectedProject(project)}
                 >
                   <div className="absolute inset-0 bg-brand-accent-blue/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
@@ -278,16 +241,14 @@ export const Projects = () => {
                     src={project.heroImage}
                     alt={project.title}
                     loading="lazy"
-                    className="max-w-full max-h-full object-contain transform group-hover:scale-[1.02] transition-transform duration-500 rounded-lg shadow-sm"
+                    className="max-w-full max-h-full object-contain transform group-hover:scale-[1.02] transition-transform duration-500 rounded-lg border border-slate-200/50 dark:border-slate-800/50 shadow-sm"
                   />
-                  
                 </div>
 
                 {/* Info Body */}
                 <div className="p-6 flex flex-col flex-grow text-left">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className={`px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-md border flex items-center gap-1.5 ${catStyle.bg} ${catStyle.text}`}>
-                      <span className={`w-1.5 h-1.5 rounded-full ${catStyle.dot}`} />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark">
                       {project.category}
                     </span>
                   </div>
@@ -401,7 +362,7 @@ export const Projects = () => {
                   
                   {/* 1. Hero Screenshot */}
                   <div 
-                    className="rounded-xl overflow-hidden border border-brand-border-light dark:border-brand-border-dark bg-slate-50 dark:bg-brand-surface-dark p-4 flex items-center justify-center aspect-[16/9] max-h-96 cursor-pointer group relative"
+                    className="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/40 p-4 flex items-center justify-center aspect-[16/9] max-h-96 cursor-pointer group relative"
                     onClick={() => setActiveImage({ src: selectedProject.heroImage, alt: `${selectedProject.title} Main Screenshot` })}
                   >
                     <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none z-10">
@@ -413,7 +374,7 @@ export const Projects = () => {
                       src={selectedProject.heroImage} 
                       alt={`${selectedProject.title} Main Screenshot`} 
                       loading="lazy"
-                      className="max-w-full max-h-full object-contain rounded shadow-sm transform group-hover:scale-[1.01] transition-transform duration-300"
+                      className="max-w-full max-h-full object-contain rounded-lg border border-slate-200/50 dark:border-slate-800/50 shadow-sm transform group-hover:scale-[1.01] transition-transform duration-300"
                     />
                   </div>
 
@@ -489,7 +450,6 @@ export const Projects = () => {
                           {selectedProject.id === 'worklance' && "Online job portals frequently encounter data clutter from dynamic candidate fields and incomplete applications. Hiring teams require a systematic validation gate that locks out bad payloads prior to processing steps."}
                           {selectedProject.id === 'flirtyfy' && "Interfacing chat transcripts from dating portals requires users to manually copy screens, which is slow and adds usability blockades on mobile clients."}
                           {selectedProject.id === 'vmware' && "Developing infrastructure requires testing host behaviors, traffic routing, and redundancy patterns. Replicating this requires virtual sandbox environments that mimic actual web servers and proxy boundaries."}
-                          {selectedProject.id === 'minecraft' && "Managing multiple game modes usually requires players to switch servers, creating fragmented communities and inconsistent progression."}
                         </p>
                       </div>
 
@@ -502,7 +462,6 @@ export const Projects = () => {
                           {selectedProject.id === 'worklance' && "Implemented explicit check logic utilizing Express router hooks and schema validations. Candidates must pass complete fields before request operations are executed."}
                           {selectedProject.id === 'flirtyfy' && "Built an automated image parser integrating Gemini Vision OCR to translate image pixels into text strings, cleaning conversational lines and feeding them to customized API prompts."}
                           {selectedProject.id === 'vmware' && "Configured multi-node Ubuntu Server VMs running on VMware Workstation, routing upstream queries through an Nginx proxy load balancer configured with round-robin traffic routing rules."}
-                          {selectedProject.id === 'minecraft' && "Built a unified Minecraft server using Multiverse to host Survival, SkyBlock, One Block, PvP, and Lobby worlds inside a single PaperMC server instance."}
                         </p>
                       </div>
 
@@ -695,63 +654,6 @@ export const Projects = () => {
                               </div>
                             </div>
                           )}
-
-                          {selectedProject.id === 'minecraft' && (
-                            <div className="w-full flex flex-col items-center gap-3 text-center max-w-md">
-                              <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark px-3 py-1.5 rounded-lg w-full font-semibold">
-                                Player (Java & Bedrock Cross-Play)
-                              </div>
-                              <div className="text-brand-accent-blue font-bold">↓</div>
-                              <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark px-3 py-1.5 rounded-lg w-full font-semibold">
-                                Aternos Hosted PaperMC Server
-                              </div>
-                              <div className="text-brand-accent-blue font-bold">↓</div>
-                              <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark px-3 py-1.5 rounded-lg w-full font-semibold">
-                                Lobby World (Hub)
-                              </div>
-                              <div className="text-brand-accent-blue font-bold">↓</div>
-                              <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark px-3 py-1.5 rounded-lg w-full font-semibold">
-                                Multiverse World Management
-                              </div>
-                              <div className="text-brand-accent-blue font-bold">↓</div>
-                              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 w-full font-semibold text-[10px]">
-                                <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/40 p-1.5 rounded-lg">
-                                  Survival
-                                </div>
-                                <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/40 p-1.5 rounded-lg">
-                                  SkyBlock
-                                </div>
-                                <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/40 p-1.5 rounded-lg">
-                                  One Block
-                                </div>
-                                <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/40 p-1.5 rounded-lg">
-                                  PvP
-                                </div>
-                                <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/40 p-1.5 rounded-lg col-span-2 sm:col-span-1">
-                                  Event Worlds
-                                </div>
-                              </div>
-                              <div className="mt-4 pt-4 border-t border-brand-border-light dark:border-brand-border-dark/40 w-full text-left">
-                                <div className="text-[10px] text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark font-bold uppercase tracking-wider mb-2 text-center">
-                                  Supporting Systems
-                                </div>
-                                <div className="grid grid-cols-2 gap-2 text-[10px] font-semibold text-center">
-                                  <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/20 p-1.5 rounded-lg">
-                                    Vault Economy
-                                  </div>
-                                  <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/20 p-1.5 rounded-lg">
-                                    LuckPerms Permissions
-                                  </div>
-                                  <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/20 p-1.5 rounded-lg">
-                                    Skript Automation
-                                  </div>
-                                  <div className="border border-brand-border-light dark:border-brand-border-dark bg-brand-surface-light dark:bg-brand-surface-dark/20 p-1.5 rounded-lg">
-                                    GeyserMC Cross-Play
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          )}
                         </div>
                       </div>
 
@@ -764,7 +666,6 @@ export const Projects = () => {
                           {selectedProject.id === 'worklance' && "Implementing multiple verification paths risked code duplication across separate routers. To resolve this, I consolidated the checking filters into a unified middleware handler and linked it to Express routing rules."}
                           {selectedProject.id === 'flirtyfy' && "Screenshot crops contained various layout signals, timestamps, and network tags that corrupted prompt validations. I developed regex strings to exclude metadata lines and group conversational items prior to sending requests."}
                           {selectedProject.id === 'vmware' && "Virtual machine host records often dropped connections under dynamic IP assignments. To solve this, I assigned static internal IPs and updated the proxy hosts definition layout."}
-                          {selectedProject.id === 'minecraft' && "Integrating multiple plugins and ensuring strict world isolation presented significant compatibility hurdles. I configured Multiverse Inventories to isolate player items across distinct game modes, set up command restrictions to prevent cross-world cheats, and balanced the Vault-based economies to prevent currency inflation between Survival and SkyBlock."}
                         </p>
                       </div>
 
@@ -804,17 +705,6 @@ export const Projects = () => {
                               <span className="text-sm text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-normal">{feat}</span>
                             </li>
                           ))}
-                          {selectedProject.id === 'minecraft' && [
-                            "GeyserMC & Floodgate integration for seamless Java and Bedrock cross-platform play.",
-                            "Multiverse world segregation with isolated inventories, game modes, and chat channels.",
-                            "LuckPerms permission groups enforcing strict access controls and ranks per world.",
-                            "Skript-based gameplay automation for custom rules, events, and utility features."
-                          ].map((feat, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5">
-                              <span className="text-brand-accent-blue mt-0.5 shrink-0 font-bold">&rarr;</span>
-                              <span className="text-sm text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-normal">{feat}</span>
-                            </li>
-                          ))}
                         </ul>
                       </div>
 
@@ -827,7 +717,6 @@ export const Projects = () => {
                           {selectedProject.id === 'worklance' && "The implementation of backend interceptors successfully prevented incomplete application submissions. This reduced administrative database cleanups and ensured higher candidate quality."}
                           {selectedProject.id === 'flirtyfy' && "The vision pipeline allowed users to retrieve AI recommendations instantly from image files, improving mobile app usability and speed."}
                           {selectedProject.id === 'vmware' && "The virtualized cluster demonstrated stable fail-over behaviors. Shutting down one server VM had zero impact on website access, showing high-availability routing logic."}
-                          {selectedProject.id === 'minecraft' && "Players could move between game modes seamlessly while maintaining world-specific inventories, permissions, and gameplay rules."}
                         </p>
                       </div>
 
@@ -856,13 +745,6 @@ export const Projects = () => {
                               <ImageCard src={infrastructureArchitecture} alt="VM Map" caption="VMware virtual networking mapping." onClick={() => setActiveImage({ src: infrastructureArchitecture, alt: "VM Map" })} />
                               <ImageCard src={loadBalancerSwitching} alt="Balancer Logs" caption="Nginx round-robin switching logs." onClick={() => setActiveImage({ src: loadBalancerSwitching, alt: "Balancer Logs" })} />
                               <ImageCard src={htopMonitoring} alt="Htop Monitoring" caption="CPU utilization stress check profiles." onClick={() => setActiveImage({ src: htopMonitoring, alt: "Htop Monitoring" })} />
-                            </>
-                          )}
-                          {selectedProject.id === 'minecraft' && (
-                            <>
-                              <ImageCard src={lobbySpawn} alt="Lobby Spawn" caption="Unified player lobby world spawn." onClick={() => setActiveImage({ src: lobbySpawn, alt: "Lobby Spawn" })} />
-                              <ImageCard src={skyblockGui} alt="Custom UI" caption="Custom server layout options." onClick={() => setActiveImage({ src: skyblockGui, alt: "Custom UI" })} />
-                              <ImageCard src={survivalLobby} alt="Survival World" caption="Modular game mode zone." onClick={() => setActiveImage({ src: survivalLobby, alt: "Survival World" })} />
                             </>
                           )}
                         </div>

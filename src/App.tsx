@@ -5,9 +5,7 @@ import { About } from './sections/About';
 import { Projects } from './sections/Projects';
 import { QATesting } from './sections/QATesting';
 import { Achievements } from './sections/Achievements';
-import { Journey } from './sections/Journey';
 import { Skills } from './sections/Skills';
-import { Philosophy } from './sections/Philosophy';
 import { Contact } from './sections/Contact';
 
 function App() {
@@ -22,8 +20,6 @@ function App() {
         <Projects />
         <QATesting />
         <Achievements />
-        <Journey />
-        <Philosophy />
         <Contact />
       </main>
       

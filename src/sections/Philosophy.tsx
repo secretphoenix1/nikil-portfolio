@@ -91,7 +91,7 @@ export const Philosophy = () => {
                   <ul className="space-y-2">
                     {area.items.map((item) => (
                       <li key={item} className="flex items-center gap-2 text-xs text-brand-text-secondary-light dark:text-brand-text-secondary-dark">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 shrink-0" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-brand-accent-blue/80 shrink-0" />
                         <span>{item}</span>
                       </li>
                     ))}
