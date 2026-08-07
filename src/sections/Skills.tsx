@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { ScrollReveal } from '../components/ScrollReveal';
 import {
   BeakerIcon,
@@ -7,6 +8,8 @@ import {
   CommandLineIcon,
   GlobeAltIcon
 } from '@heroicons/react/24/outline';
+import playwrightCert from '../assets/playwright-certificate.png';
+import playwright102Cert from '../assets/playwright-102-certificate.png';
 
 const skillGroups = [
   {
@@ -98,7 +101,61 @@ const getAccentClasses = (accent: string) => {
   }
 };
 
+const certificationsList = [
+  {
+    title: 'Playwright 101 Certification',
+    issuer: 'TestMu AI',
+    thumbnail: playwrightCert,
+    verificationUrl: 'https://www.testmuai.com/certified/P101-DZHIC2/',
+    status: 'Verified',
+    highlights: [
+      'Know-how of Playwright automation framework.',
+      'Using DOM and Web Locators in Playwright.',
+      'Running cross browser tests (Serial and Parallel) on cloud grid.'
+    ]
+  },
+  {
+    title: 'Playwright 102 Certification',
+    issuer: 'TestMu AI',
+    thumbnail: playwright102Cert,
+    verificationUrl: 'https://www.testmuai.com/certified/P102-1UBJ9P',
+    status: 'Verified',
+    highlights: [
+      'Know-how of Playwright automation framework.',
+      'Know-how of HyperExecute smart test orchestration platform.',
+      'Know-how of Auto-split execution mechanism, Matrix-based test execution, and Secrets management using YAML.',
+      'Experience in running cross browser tests (Serial and Parallel) on HyperExecute Cloud Grid.'
+    ]
+  }
+];
+
 export const Skills = () => {
+  const [maxHeight, setMaxHeight] = useState<number | null>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const measureHeights = () => {
+      // Reset height to auto first to measure natural height
+      cardRefs.current.forEach(card => {
+        if (card) card.style.minHeight = '0px';
+      });
+
+      // Measure max height
+      const heights = cardRefs.current.map(card => card ? card.offsetHeight : 0);
+      const max = Math.max(...heights, 0);
+      if (max > 0) {
+        setMaxHeight(max);
+      }
+    };
+
+    // Run once and on window resize
+    measureHeights();
+    window.addEventListener('resize', measureHeights);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', measureHeights);
+  }, []);
+
   return (
     <section id="skills" className="py-24 bg-brand-bg-light dark:bg-brand-bg-dark border-t border-brand-border-light dark:border-brand-border-dark/60 transition-colors duration-200">
       <div className="max-w-6xl mx-auto px-6">
@@ -120,12 +177,14 @@ export const Skills = () => {
         </ScrollReveal>
 
         {/* Categorized Skills Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {skillGroups.map((section, idx) => {
             const Icon = section.icon;
             return (
-            <ScrollReveal key={idx} delay={idx * 100} className="flex">
+            <ScrollReveal key={idx} delay={idx * 100} className="flex h-full w-full">
               <div
+                ref={el => { cardRefs.current[idx] = el; }}
+                style={maxHeight ? { minHeight: `${maxHeight}px` } : undefined}
                 className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full"
               >
                 <div className="space-y-5">
@@ -147,14 +206,14 @@ export const Skills = () => {
                   <p className="text-xs sm:text-sm text-brand-text-secondary-light dark:text-brand-text-secondary-dark leading-relaxed font-normal">
                     {section.description}
                   </p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {section.items.map((item) => (
+                  {/* Tags list */}
+                  <div className="flex flex-wrap gap-1.5 pt-2">
+                    {section.items.map((skill, sIdx) => (
                       <span
-                        key={item}
-                        className="px-2 py-0.5 rounded border border-brand-border-light dark:border-brand-border-dark/60 bg-slate-50/50 dark:bg-[#0d0d0f]/60 text-[10px] font-semibold text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-mono transition-colors group-hover:border-brand-accent-blue/20"
+                        key={sIdx}
+                        className="px-2 py-0.5 text-[10px] font-semibold text-brand-text-secondary-light dark:text-brand-text-secondary-dark bg-slate-50 dark:bg-[#18181b]/50 border border-brand-border-light dark:border-brand-border-dark/60 rounded-md"
                       >
-                        {item}
+                        {skill}
                       </span>
                     ))}
                   </div>
@@ -163,6 +222,68 @@ export const Skills = () => {
             </ScrollReveal>
             );
           })}
+        </div>
+
+        {/* Certifications Row */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {certificationsList.map((cert, idx) => (
+            <ScrollReveal key={idx} delay={200} className="flex h-full w-full">
+              <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full h-full">
+                <div className="flex-grow flex flex-col justify-between space-y-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-[10px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider block">
+                        Certifications
+                      </span>
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark font-mono">
+                        {cert.status}
+                      </span>
+                    </div>
+
+                    <div className="space-y-3">
+                      <h3 className="text-base font-bold text-brand-text-primary-light dark:text-brand-text-primary-dark group-hover:text-brand-accent-blue transition-colors duration-200">
+                        {cert.title}
+                      </h3>
+                      <p className="text-xs text-brand-text-secondary-light dark:text-brand-text-secondary-dark font-normal">
+                        Issued by <strong className="font-semibold text-brand-text-primary-light dark:text-brand-text-primary-dark">{cert.issuer}</strong>
+                      </p>
+                    </div>
+
+                    {/* Highlights Bullet List */}
+                    <ul className="space-y-2 mt-3">
+                      {cert.highlights.map((point, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2.5 text-xs text-brand-text-secondary-light dark:text-brand-text-secondary-dark leading-relaxed font-normal text-left">
+                          <span className="h-1.5 w-1.5 rounded-full bg-brand-text-tertiary-light dark:bg-brand-text-tertiary-dark shrink-0 mt-1.5" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Screenshot Presentation Frame for Certificate Thumbnail */}
+                  <div className="rounded-xl overflow-hidden border border-brand-border-light dark:border-brand-border-dark bg-slate-50 dark:bg-brand-surface-dark p-2.5 flex items-center justify-center aspect-[16/11] max-w-full">
+                    <img
+                      src={cert.thumbnail}
+                      alt={`${cert.title} Certificate`}
+                      loading="lazy"
+                      className="max-h-full object-contain rounded border border-brand-border-light dark:border-brand-border-dark/50 shadow-xs"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-brand-border-light/60 dark:border-brand-border-dark/40">
+                  <a
+                    href={cert.verificationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-full items-center justify-center rounded-lg bg-brand-text-primary-light text-brand-bg-light dark:bg-[#1f1f23] dark:text-brand-text-primary-dark py-2.5 px-4 text-xs font-semibold hover:opacity-95 dark:hover:bg-zinc-800 transition-colors text-center cursor-pointer shadow-xs active:scale-[0.98]"
+                  >
+                    Verify Certificate
+                  </a>
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
         </div>
 
       </div>

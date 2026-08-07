@@ -222,8 +222,8 @@ export const QATesting = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
           {/* Card 1: Test Case Documentation */}
-          <ScrollReveal delay={50} className="flex">
-            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full">
+          <ScrollReveal delay={50} className="flex h-full w-full">
+            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full h-full">
               <div className="space-y-4">
                 <span className="text-[10px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider block">
                   Evidence 01 - Documentation
@@ -270,8 +270,8 @@ export const QATesting = () => {
           </ScrollReveal>
 
           {/* Card 2: Playwright HTML Report */}
-          <ScrollReveal delay={100} className="flex">
-            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full">
+          <ScrollReveal delay={100} className="flex h-full w-full">
+            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full h-full">
               <div className="space-y-4">
                 <span className="text-[10px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider block">
                   Evidence 02 - Report Output
@@ -316,8 +316,8 @@ export const QATesting = () => {
           </ScrollReveal>
 
           {/* Card 3: Test Execution Results */}
-          <ScrollReveal delay={150} className="flex">
-            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full">
+          <ScrollReveal delay={150} className="flex h-full w-full">
+            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full h-full">
               <div className="space-y-4">
                 <span className="text-[10px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider block">
                   Evidence 03 - Terminal Output
@@ -362,8 +362,8 @@ export const QATesting = () => {
           </ScrollReveal>
 
           {/* Card 4: Automation Framework */}
-          <ScrollReveal delay={200} className="flex">
-            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full">
+          <ScrollReveal delay={200} className="flex h-full w-full">
+            <div className="qa-dashboard-card rounded-xl p-6 flex flex-col justify-between group w-full h-full">
               <div className="space-y-4">
                 <span className="text-[10px] font-bold text-brand-text-tertiary-light dark:text-brand-text-tertiary-dark uppercase tracking-wider block">
                   Evidence 04 - Code Architecture
